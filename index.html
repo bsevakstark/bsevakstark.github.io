@@ -235,9 +235,9 @@
     transform: translateY(0);
   }
 
-  .stat-card:nth-child(1) { animation-delay: 0.3s; align-self: flex-end; }
-  .stat-card:nth-child(2) { animation-delay: 0.5s; align-self: center; }
-  .stat-card:nth-child(3) { animation-delay: 0.7s; align-self: flex-end; }
+  .stat-card:nth-child(1) { align-self: flex-end; }
+  .stat-card:nth-child(2) { align-self: center; }
+  .stat-card:nth-child(3) { align-self: flex-end; }
 
   .stat-number {
     font-family: var(--font-display);
@@ -551,29 +551,7 @@
   }
 
   /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-text .hero-eyebrow,
-  .hero-text .hero-name,
-  .hero-text .hero-desc,
-  .hero-text .hero-cta {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .hero-text .hero-eyebrow { animation-delay: 0.1s; }
-  .hero-text .hero-name    { animation-delay: 0.2s; }
-  .hero-text .hero-desc    { animation-delay: 0.35s; }
-  .hero-text .hero-cta     { animation-delay: 0.5s; }
-
-  /* scroll reveal */
-  .reveal {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  .reveal { opacity: 1; transform: none; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
@@ -621,7 +599,6 @@
     <div class="hero-cta">
       <a href="#research" class="btn-primary">View Research ↓</a>
       <a href="bhavyascv.pdf" target="_blank" class="btn-secondary">👁 View CV</a>
-      <a href="/cdn-cgi/l/email-protection#206252534556414b1115101460474d41494c0e434f4d" class="btn-secondary">Get in Touch</a>
     </div>
   </div>
 
@@ -656,7 +633,7 @@
       <p>Currently investigating metabolic associations with gallstone disease, building reproducible analysis pipelines and uncovering novel biomarkers.</p>
     </div>
 
-    <div class="reveal" style="transition-delay: 0.15s;">
+    <div class="reveal">
       <ul class="edu-list">
         <li class="edu-item">
           <div class="edu-degree">M.S. Biomedical Informatics</div>
@@ -715,7 +692,7 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="project-card reveal" style="transition-delay: 0.1s;">
+    <div class="project-card reveal">
       <span class="project-tag">Research · 2022–2023</span>
       <h3 class="project-title">Human Chimeric IL-15 & T-cell Activation</h3>
       <p class="project-desc">
@@ -731,7 +708,7 @@
     </div>
 
     <!-- Card 3 -->
-    <div class="project-card reveal" style="transition-delay: 0.2s;">
+    <div class="project-card reveal">
       <span class="project-tag">Internship · 2021</span>
       <h3 class="project-title">Molecular & Chromatography Lab</h3>
       <p class="project-desc">
@@ -763,7 +740,7 @@
       <p>Hover over any skill to highlight it.</p>
     </div>
 
-    <div class="skills-categories reveal" style="transition-delay: 0.15s;">
+    <div class="skills-categories reveal">
       <div>
         <div class="skill-group-label">Bioinformatics</div>
         <div class="skill-tags">
@@ -808,7 +785,7 @@
   <ul class="footer-links">
     <li><a href="/cdn-cgi/l/email-protection#3d7f4f4e584b5c560c080d097d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="f7b585849281969cc6c2c7c3b7909a969e9bd994989a">[email&#160;protected]</span></a></li>
     <li><a href="tel:6692549798">(669) 254-9798</a></li>
-    <li><a href="https://linkedin.com/in/" target="_blank">LinkedIn →</a></li>
+    <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
   </ul>
   <p class="footer-copy">© 2025 Bhavya Sevak</p>
 </footer>
