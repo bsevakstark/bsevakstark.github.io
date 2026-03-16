@@ -3,339 +3,791 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bhavya Sevak | Bioinformatics Portfolio</title>
-
+<title>Bhavya Sevak — Biomedical Informatics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --ink: #0a0a0f;
+    --paper: #f5f2eb;
+    --accent: #c8f060;
+    --accent2: #60d4f0;
+    --muted: #6b6b78;
+    --card-bg: #ffffff;
+    --border: rgba(10,10,15,0.1);
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-font-family:Arial, Helvetica, sans-serif;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-background:#0f172a;
-color:#e2e8f0;
-}
+  html { scroll-behavior: smooth; }
 
-nav{
-position:fixed;
-width:100%;
-background:#020617;
-display:flex;
-justify-content:center;
-gap:40px;
-padding:15px;
-z-index:1000;
-}
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-nav a{
-color:#94a3b8;
-text-decoration:none;
-font-weight:bold;
-transition:.3s;
-}
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
 
-nav a:hover{
-color:#38bdf8;
-}
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: rgba(245,242,235,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
 
-section{
-padding:100px 10%;
-min-height:100vh;
-}
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+    color: var(--ink);
+  }
 
-.hero{
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-animation:fadeIn 2s ease;
-}
+  .nav-logo span {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--ink);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
 
-.hero h1{
-font-size:60px;
-color:#38bdf8;
-}
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
 
-.hero p{
-font-size:20px;
-margin-top:10px;
-max-width:700px;
-}
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
 
-.btn{
-margin-top:25px;
-padding:12px 25px;
-border-radius:30px;
-border:none;
-background:#38bdf8;
-color:#020617;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
+  .nav-links a:hover { color: var(--ink); }
 
-.btn:hover{
-background:#0ea5e9;
-transform:scale(1.05);
-}
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
 
-h2{
-font-size:36px;
-margin-bottom:30px;
-color:#38bdf8;
-}
+  .hero-bg-blob {
+    position: absolute;
+    top: -100px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle at 40% 40%, #c8f060 0%, #60d4f0 50%, transparent 70%);
+    opacity: 0.18;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+  }
 
-.about{
-max-width:900px;
-line-height:1.8;
-font-size:18px;
-}
+  .hero-text { position: relative; z-index: 1; }
 
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
-.skill{
-background:#020617;
-padding:20px;
-border-radius:10px;
-}
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 2px;
+    background: var(--accent);
+  }
 
-.skill h3{
-margin-bottom:10px;
-}
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 6vw, 88px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    margin-bottom: 28px;
+  }
 
-.bar{
-background:#1e293b;
-height:10px;
-border-radius:20px;
-overflow:hidden;
-}
+  .hero-name .line2 {
+    display: block;
+    -webkit-text-stroke: 2px var(--ink);
+    color: transparent;
+  }
 
-.progress{
-height:10px;
-background:#38bdf8;
-animation:load 2s forwards;
-}
+  .hero-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 420px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
 
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-}
+  .hero-desc strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
 
-.card{
-background:#020617;
-padding:25px;
-border-radius:12px;
-transition:.4s;
-transform:translateY(40px);
-opacity:0;
-animation:cardAppear 1s forwards;
-}
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 10px 25px rgba(0,0,0,.4);
-}
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 14px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, background 0.2s;
+  }
 
-.card h3{
-color:#38bdf8;
-margin-bottom:10px;
-}
+  .btn-primary:hover { transform: translateY(-2px); background: #1a1a2e; }
 
-.timeline{
-border-left:3px solid #38bdf8;
-padding-left:25px;
-}
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    padding: 14px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+  }
 
-.exp{
-margin-bottom:25px;
-}
+  .btn-secondary:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-2px);
+  }
 
-footer{
-text-align:center;
-padding:30px;
-background:#020617;
-}
+  /* hero right: stats */
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
 
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px 32px;
+    width: 220px;
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-@keyframes cardAppear{
-to{opacity:1;transform:translateY(0);}
-}
+  .stat-card:nth-child(1) { align-self: flex-end; }
+  .stat-card:nth-child(2) { align-self: center; }
+  .stat-card:nth-child(3) { align-self: flex-end; }
 
-@keyframes load{
-from{width:0}
-}
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 4px;
+  }
 
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .accent-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+
+  /* ── SECTION BASE ── */
+  section {
+    padding: 100px 48px;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 60px;
+  }
+
+  .section-number {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--ink); color: var(--paper); }
+
+  #about .section-number { color: var(--accent); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(245,242,235,0.75);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .about-text p strong { color: var(--paper); font-weight: 500; }
+
+  .about-highlight {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    color: var(--paper);
+    border-left: 3px solid var(--accent);
+    padding-left: 24px;
+    margin-bottom: 32px;
+  }
+
+  .edu-list { list-style: none; }
+
+  .edu-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(245,242,235,0.1);
+  }
+
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 4px;
+  }
+
+  .edu-school { font-size: 13px; color: rgba(245,242,235,0.5); }
+  .edu-year {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* ── RESEARCH / PROJECTS ── */
+  #research { background: var(--paper); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-card.featured {
+    grid-column: span 2;
+    background: var(--ink);
+    color: var(--paper);
+    border-color: transparent;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(200,240,96,0.15);
+    color: #5a8000;
+    margin-bottom: 18px;
+  }
+
+  .project-card.featured .project-tag {
+    background: rgba(200,240,96,0.2);
+    color: var(--accent);
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .project-card.featured .project-title { font-size: 26px; }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .project-card.featured .project-desc {
+    color: rgba(245,242,235,0.6);
+    font-size: 15px;
+    max-width: 500px;
+  }
+
+  .project-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .pill {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .project-card.featured .pill {
+    border-color: rgba(245,242,235,0.2);
+    color: rgba(245,242,235,0.6);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--ink); color: var(--paper); }
+  #skills .section-number { color: var(--accent); }
+
+  .skills-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .skills-intro {
+    font-size: 17px;
+    color: rgba(245,242,235,0.6);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .skills-intro strong { color: var(--paper); font-weight: 500; }
+
+  .skills-categories { display: flex; flex-direction: column; gap: 36px; }
+
+  .skill-group-label {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 1px solid rgba(245,242,235,0.15);
+    color: rgba(245,242,235,0.8);
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    cursor: default;
+  }
+
+  .skill-tag:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--paper);
+    padding: 60px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-right { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; }
+    .stat-card { width: 160px; padding: 16px 20px; }
+    .stat-number { font-size: 32px; }
+    section { padding: 70px 24px; }
+    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
 </style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-<a href="#experience">Experience</a>
-<a href="#contact">Contact</a>
+  <a href="#" class="nav-logo">BS<span>Portfolio</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
 </nav>
 
-<section id="home" class="hero">
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-blob"></div>
 
-<h1>Bhavya Sevak</h1>
+  <div class="hero-text">
+    <p class="hero-eyebrow">Biomedical Informatics · Arizona State University</p>
+    <h1 class="hero-name">
+      Bhavya<br>
+      <span class="line2">Sevak</span>
+    </h1>
+    <p class="hero-desc">
+      Bridging <strong>genomics, metabolomics,</strong> and <strong>machine learning</strong>
+      to decode disease mechanisms — from gallstone pathways to biomarker discovery.
+    </p>
+    <div class="hero-cta">
+      <a href="#research" class="btn-primary">View Research ↓</a>
+      <a href="bhavyascv.pdf" target="_blank" class="btn-secondary">👁 View CV</a>
+    </div>
+  </div>
 
-<p>
-MS Biomedical Informatics Student at Arizona State University.  
-Focused on bioinformatics, genomic data analysis, and large-scale biological data processing.
-</p>
-
-<a href="#projects"><button class="btn">View Projects</button></a>
-
+  <div class="hero-right">
+    <div class="stat-card">
+      <div class="stat-number"><span class="accent-dot"></span>3+</div>
+      <div class="stat-label">Years Research</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">M.Sc.</div>
+      <div class="stat-label">Biotechnology</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4×</div>
+      <div class="stat-label">Certifications</div>
+    </div>
+  </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
+  <div class="section-header">
+    <span class="section-number">01</span>
+    <h2 class="section-title">About</h2>
+  </div>
 
-<h2>About Me</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p class="about-highlight">"Turning complex biological data into actionable insights."</p>
+      <p>I'm a <strong>Biomedical Informatics master's student at Arizona State University</strong>, passionate about the intersection of molecular biology and data science. My work spans genomics, metabolomics, and computational analysis.</p>
+      <p>With a background in <strong>Biotechnology and Microbiology</strong>, I bring wet-lab intuition to computational problems — understanding not just the data, but the biology behind it.</p>
+      <p>Currently investigating metabolic associations with gallstone disease, building reproducible analysis pipelines and uncovering novel biomarkers.</p>
+    </div>
 
-<p class="about">
-
-I am a Biomedical Informatics graduate student specializing in genomic data analysis,
-bioinformatics pipelines, and biological data science. My work focuses on processing
-large genomic datasets, SNP analysis, and data-driven biomedical research.
-
-I have experience in Python programming, genomic data preprocessing, and laboratory
-research including molecular assays and chromatography techniques. I am passionate
-about applying computational methods to biological problems and advancing
-biotechnology and neurotechnology.
-
-</p>
-
+    <div class="reveal">
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-degree">M.S. Biomedical Informatics</div>
+          <div class="edu-school">Arizona State University, Tempe, AZ</div>
+          <div class="edu-year">Expected 2026</div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-degree">M.Sc. Biotechnology</div>
+          <div class="edu-school">Nirma University, Gujarat, India · CGPA 7.77/10</div>
+          <div class="edu-year">2023</div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-degree">B.Sc. Microbiology</div>
+          <div class="edu-school">BKNMU, CCSIT, Gujarat, India · CGPA 7.24/10</div>
+          <div class="edu-year">2021</div>
+        </li>
+        <li class="edu-item" style="padding-top: 28px; border-bottom: none;">
+          <div class="edu-degree" style="color: var(--accent); font-size: 13px; margin-bottom: 10px;">Certifications</div>
+          <div class="edu-school" style="line-height: 2; color: rgba(245,242,235,0.5);">
+            CS50 — Harvard Online (2020)<br>
+            Statistics and R — Harvard Online (2020)<br>
+            Statistics: Unlocking the World of Data — U. of Edinburgh (2021)<br>
+            Data Science: R Basics — Harvard Online (2021)
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
+<!-- RESEARCH & PROJECTS -->
+<section id="research">
+  <div class="section-header">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Research & Projects</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Featured -->
+    <div class="project-card featured reveal">
+      <span class="project-tag">Current · ASU 2025</span>
+      <h3 class="project-title">Metabolic GWAS on Gallstone Disease</h3>
+      <p class="project-desc">
+        Investigating genetic–metabolite associations in gallstone disease using metabolomics and genotype data. 
+        Built preprocessing pipelines, conducted pathway and network-based analyses, and identified candidate 
+        biomarkers in liver-related metabolic pathways.
+      </p>
+      <div class="project-pills">
+        <span class="pill">R</span>
+        <span class="pill">Metabolomics</span>
+        <span class="pill">GWAS</span>
+        <span class="pill">Pathway Analysis</span>
+        <span class="pill">Biomarker Discovery</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="project-card reveal">
+      <span class="project-tag">Research · 2022–2023</span>
+      <h3 class="project-title">Human Chimeric IL-15 & T-cell Activation</h3>
+      <p class="project-desc">
+        Assessed T-cell activation using chimeric IL-15 via in vitro and in vivo models. Involved cell culture, 
+        probe design, gel electrophoresis, and analysis of liquid biopsy reports in cancer research.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Cell Culture</span>
+        <span class="pill">PCR</span>
+        <span class="pill">R</span>
+        <span class="pill">Liquid Biopsy</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="project-card reveal">
+      <span class="project-tag">Internship · 2021</span>
+      <h3 class="project-title">Molecular & Chromatography Lab</h3>
+      <p class="project-desc">
+        Performed DNA extraction, PCR workflows, gel electrophoresis, HPLC and HPTLC experiments. Supported 
+        protocol development for diverse sample types.
+      </p>
+      <div class="project-pills">
+        <span class="pill">HPLC</span>
+        <span class="pill">HPTLC</span>
+        <span class="pill">DNA Extraction</span>
+        <span class="pill">Electrophoresis</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
 <section id="skills">
+  <div class="section-header">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Skills</h2>
+  </div>
 
-<h2>Technical Skills</h2>
+  <div class="skills-layout">
+    <div class="skills-intro reveal">
+      <p>A blend of <strong>computational</strong> and <strong>wet-lab</strong> expertise — I speak both Python and pipette.</p>
+      <br>
+      <p>Hover over any skill to highlight it.</p>
+    </div>
 
-<div class="skills">
-
-<div class="skill">
-<h3>Python</h3>
-<div class="bar"><div class="progress" style="width:90%"></div></div>
-</div>
-
-<div class="skill">
-<h3>Bioinformatics</h3>
-<div class="bar"><div class="progress" style="width:85%"></div></div>
-</div>
-
-<div class="skill">
-<h3>Genomic Data Analysis</h3>
-<div class="bar"><div class="progress" style="width:80%"></div></div>
-</div>
-
-<div class="skill">
-<h3>Java Programming</h3>
-<div class="bar"><div class="progress" style="width:70%"></div></div>
-</div>
-
-<div class="skill">
-<h3>Data Science</h3>
-<div class="bar"><div class="progress" style="width:75%"></div></div>
-</div>
-
-</div>
-
+    <div class="skills-categories reveal">
+      <div>
+        <div class="skill-group-label">Bioinformatics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">DNA Sequencing</span>
+          <span class="skill-tag">PCR</span>
+          <span class="skill-tag">Gel Electrophoresis</span>
+          <span class="skill-tag">GWAS</span>
+          <span class="skill-tag">Metabolomics</span>
+          <span class="skill-tag">Pathway Analysis</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Programming & Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">R (Statistical)</span>
+          <span class="skill-tag">MS Excel</span>
+          <span class="skill-tag">PowerPoint</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Laboratory Techniques</div>
+        <div class="skill-tags">
+          <span class="skill-tag">HPLC</span>
+          <span class="skill-tag">HPTLC</span>
+          <span class="skill-tag">DNA Extraction</span>
+          <span class="skill-tag">Cell Culture</span>
+          <span class="skill-tag">Animal Handling</span>
+          <span class="skill-tag">Probe Design</span>
+          <span class="skill-tag">Liquid Biopsy</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="projects">
-
-<h2>Projects</h2>
-
-<div class="projects">
-
-<div class="card">
-<h3>GWAS Data Processing Pipeline</h3>
-<p>
-Developed Python scripts to process SNP genotype datasets containing
-over 500k variants. Implemented filtering and preprocessing methods
-that reduced data processing time by ~35%.
-</p>
-</div>
-
-<div class="card">
-<h3>Genomic Variant Filtering</h3>
-<p>
-Created automated workflows to clean and structure genomic datasets
-for downstream statistical analysis and association studies.
-</p>
-</div>
-
-<div class="card">
-<h3>Biological Data Analysis</h3>
-<p>
-Designed data analysis pipelines in Python to automate preprocessing
-of biological datasets and reduce manual processing by 25%.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="experience">
-
-<h2>Experience</h2>
-
-<div class="timeline">
-
-<div class="exp">
-<h3>Molecular and Chromatography Intern</h3>
-<p>
-Performed molecular assays and chromatographic analysis while maintaining
-high data accuracy across multiple experimental runs.
-</p>
-</div>
-
-<div class="exp">
-<h3>Biomedical Informatics Research</h3>
-<p>
-Worked on genomic datasets including SNP filtering, preprocessing,
-and preparation for genome-wide association studies.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="contact">
-
-<h2>Contact</h2>
-
-<p>Email: your.email@email.com</p>
-<p>GitHub: https://github.com/bsevakstark</p>
-<p>LinkedIn: www.linkedin.com/in/bhavya-sevak-48515b215</p>
-
-</section>
-
+<!-- FOOTER -->
 <footer>
-
-<p>© 2026 Bhavya Sevak</p>
-
+  <div class="footer-name">Bhavya Sevak</div>
+  <ul class="footer-links">
+    <li><a href="/cdn-cgi/l/email-protection#3d7f4f4e584b5c560c080d097d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="f7b585849281969cc6c2c7c3b7909a969e9bd994989a">[email&#160;protected]</span></a></li>
+    <li><a href="tel:6692549798">(669) 254-9798</a></li>
+    <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
+  </ul>
+  <p class="footer-copy">© Bhavya Sevak</p>
 </footer>
 
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/clo
