@@ -357,7 +357,7 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
@@ -698,12 +698,11 @@
 
     <!-- Featured — mGWAS -->
     <div class="project-card featured reveal">
-      <span class="project-tag">Current · ASU 2025</span>
+      <span class="project-tag">Current · ASU 2026</span>
       <h3 class="project-title">Metabolic GWAS on Gallstone Disease</h3>
       <p class="project-desc">
         Investigating genetic–metabolite associations in gallstone disease using metabolomics and genotype data.
-        Built preprocessing pipelines, conducted pathway and network-based analyses, and identified candidate
-        biomarkers in liver-related metabolic pathways.
+        Built preprocessing pipelines, pathway and network-based analyses, and identified candidate biomarkers in liver-related metabolic pathways.
       </p>
       <div class="project-pills">
         <span class="pill">R</span>
@@ -717,13 +716,48 @@
       </div>
     </div>
 
+    <!-- RNA-seq Alzheimer's -->
+    <div class="project-card reveal">
+      <span class="project-tag">Bioinformatics · 2025</span>
+      <h3 class="project-title">Alzheimer's RNA-seq Pipeline</h3>
+      <p class="project-desc">
+        End-to-end differential expression pipeline on AD brain tissue — QC, normalization, DEG analysis, volcano plots, heatmaps, and pathway enrichment identifying neuroinflammation and synaptic loss signatures.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Python</span>
+        <span class="pill">RNA-seq</span>
+        <span class="pill">DEG Analysis</span>
+        <span class="pill">Pathway Enrichment</span>
+      </div>
+      <div>
+        <a href="https://github.com/bsevakstark/rnaseq-alzheimers" target="_blank" class="btn-demo light">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- EHR Sepsis -->
+    <div class="project-card reveal">
+      <span class="project-tag">Clinical ML · 2026</span>
+      <h3 class="project-title">EHR Sepsis Readmission Predictor</h3>
+      <p class="project-desc">
+        MIMIC-IV cohort analysis predicting 30-day sepsis readmission using SQL + Python. Gradient Boosting with SHAP explainability, risk stratification, and health equity analysis across insurance groups.
+      </p>
+      <div class="project-pills">
+        <span class="pill">SQL</span>
+        <span class="pill">Python</span>
+        <span class="pill">MIMIC-IV</span>
+        <span class="pill">SHAP</span>
+      </div>
+      <div>
+        <a href="https://github.com/bsevakstark/ehr-sepsis-analysis" target="_blank" class="btn-demo light">GitHub →</a>
+      </div>
+    </div>
+
     <!-- Breast Cancer -->
     <div class="project-card reveal">
       <span class="project-tag">ML Project · 2025</span>
       <h3 class="project-title">Breast Cancer Biomarker Classifier</h3>
       <p class="project-desc">
-        ML pipeline classifying tumors as malignant or benign using 3 models (Logistic Regression, Random Forest, SVM)
-        with SHAP explainability, ROC curves, and a live interactive dashboard.
+        ML pipeline classifying tumors as malignant or benign using 3 models with SHAP explainability, ROC curves, and a live interactive dashboard.
       </p>
       <div class="project-pills">
         <span class="pill">Python</span>
@@ -739,11 +773,10 @@
 
     <!-- Heart Disease -->
     <div class="project-card reveal">
-      <span class="project-tag">ML Project · 2025</span>
+      <span class="project-tag">ML Project · 2026</span>
       <h3 class="project-title">Heart Disease Prediction</h3>
       <p class="project-desc">
-        Clinical ML classifier using the Cleveland dataset with Gradient Boosting, SHAP explainability,
-        and a live predictor where you can input patient values and get instant risk predictions.
+        Clinical ML classifier on the Cleveland dataset with Gradient Boosting, SHAP explainability, and a live predictor where you can input patient values and get instant risk predictions.
       </p>
       <div class="project-pills">
         <span class="pill">Python</span>
@@ -757,19 +790,22 @@
       </div>
     </div>
 
-    <!-- IL-15 Research -->
+    <!-- COVID Dashboard -->
     <div class="project-card reveal">
-      <span class="project-tag">Research · 2022–2023</span>
-      <h3 class="project-title">Human Chimeric IL-15 & T-cell Activation</h3>
+      <span class="project-tag">Dashboard · 2025</span>
+      <h3 class="project-title">COVID-19 Global Dashboard</h3>
       <p class="project-desc">
-        Assessed T-cell activation using chimeric IL-15 via in vitro and in vivo models. Involved cell culture,
-        probe design, gel electrophoresis, and analysis of liquid biopsy reports in cancer research.
+        Interactive world map + trend charts dashboard using live Our World in Data. Country comparisons, vaccination rates, case fatality analysis, and GDP vs cases insights across 200+ countries.
       </p>
       <div class="project-pills">
-        <span class="pill">Cell Culture</span>
-        <span class="pill">PCR</span>
-        <span class="pill">R</span>
-        <span class="pill">Liquid Biopsy</span>
+        <span class="pill">Python</span>
+        <span class="pill">Plotly</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">Live Data</span>
+      </div>
+      <div>
+        <a href="https://covid-dashboard-efpahpjjrgcspqtmqwzfo4.streamlit.app" target="_blank" class="btn-demo accent">🚀 Live Demo</a>
+        <a href="https://github.com/bsevakstark/covid-dashboard" target="_blank" class="btn-demo light">GitHub →</a>
       </div>
     </div>
 
@@ -835,7 +871,7 @@
     <p style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px;">04</p>
     <h2 style="font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 20px;">Get in Touch</h2>
     <p style="font-size: 17px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 40px;">
-      
+    
     </a>
   </div>
 </section>
@@ -844,11 +880,12 @@
 <footer>
   <div class="footer-name">Bhavya Sevak</div>
   <ul class="footer-links">
-    <li><a href="/cdn-cgi/l/email-protection#3d7f4f4e584b5c560c080d097d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="f7b585849281969cc6c2c7c3b7909a969e9bd994989a">[email&#160;protected]</span></a></li>
     <li><a href="tel:6692549798">(669) 254-9798</a></li>
     <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
+    <li><a href="https://github.com/bsevakstark" target="_blank">GitHub →</a></li>
   </ul>
-  <p class="footer-copy">© 2025 Bhavya Sevak</p>
+  <p class="footer-copy">© Bhavya Sevak</p>
 </footer>
 
 <script data-cfasync="false" src
+
