@@ -357,7 +357,7 @@
 
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
@@ -455,6 +455,28 @@
     border-color: rgba(245,242,235,0.2);
     color: rgba(245,242,235,0.6);
   }
+
+  .btn-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    margin-right: 8px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-demo.accent { background: var(--accent); color: var(--ink); }
+  .btn-demo.accent:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,240,96,0.4); }
+  .btn-demo.light { background: white; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-demo.light:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+  .btn-demo.ghost { background: rgba(245,242,235,0.1); color: var(--accent); border: 1.5px solid rgba(200,240,96,0.4); }
+  .btn-demo.ghost:hover { background: var(--accent); color: var(--ink); transform: translateY(-2px); }
 
   /* ── SKILLS ── */
   #skills { background: var(--ink); color: var(--paper); }
@@ -579,6 +601,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -673,13 +696,13 @@
 
   <div class="projects-grid">
 
-    <!-- Featured -->
+    <!-- Featured — mGWAS -->
     <div class="project-card featured reveal">
       <span class="project-tag">Current · ASU 2025</span>
       <h3 class="project-title">Metabolic GWAS on Gallstone Disease</h3>
       <p class="project-desc">
-        Investigating genetic–metabolite associations in gallstone disease using metabolomics and genotype data. 
-        Built preprocessing pipelines, conducted pathway and network-based analyses, and identified candidate 
+        Investigating genetic–metabolite associations in gallstone disease using metabolomics and genotype data.
+        Built preprocessing pipelines, conducted pathway and network-based analyses, and identified candidate
         biomarkers in liver-related metabolic pathways.
       </p>
       <div class="project-pills">
@@ -689,14 +712,57 @@
         <span class="pill">Pathway Analysis</span>
         <span class="pill">Biomarker Discovery</span>
       </div>
+      <div>
+        <a href="https://github.com/bsevakstark" target="_blank" class="btn-demo ghost">⭐ In Progress</a>
+      </div>
     </div>
 
-    <!-- Card 2 -->
+    <!-- Breast Cancer -->
+    <div class="project-card reveal">
+      <span class="project-tag">ML Project · 2025</span>
+      <h3 class="project-title">Breast Cancer Biomarker Classifier</h3>
+      <p class="project-desc">
+        ML pipeline classifying tumors as malignant or benign using 3 models (Logistic Regression, Random Forest, SVM)
+        with SHAP explainability, ROC curves, and a live interactive dashboard.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Python</span>
+        <span class="pill">scikit-learn</span>
+        <span class="pill">SHAP</span>
+        <span class="pill">Streamlit</span>
+      </div>
+      <div>
+        <a href="https://breast-cancer-classifier-unftkx6agnzepf4vahp7lz.streamlit.app" target="_blank" class="btn-demo accent">🚀 Live Demo</a>
+        <a href="https://github.com/bsevakstark/breast-cancer-classifier" target="_blank" class="btn-demo light">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- Heart Disease -->
+    <div class="project-card reveal">
+      <span class="project-tag">ML Project · 2025</span>
+      <h3 class="project-title">Heart Disease Prediction</h3>
+      <p class="project-desc">
+        Clinical ML classifier using the Cleveland dataset with Gradient Boosting, SHAP explainability,
+        and a live predictor where you can input patient values and get instant risk predictions.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Python</span>
+        <span class="pill">Gradient Boosting</span>
+        <span class="pill">SHAP</span>
+        <span class="pill">Streamlit</span>
+      </div>
+      <div>
+        <a href="https://heart-disease-prediction-ml-gjemoo5cufvv6r8e4nadud.streamlit.app" target="_blank" class="btn-demo accent">🚀 Live Demo</a>
+        <a href="https://github.com/bsevakstark/heart-disease-prediction-ml" target="_blank" class="btn-demo light">GitHub →</a>
+      </div>
+    </div>
+
+    <!-- IL-15 Research -->
     <div class="project-card reveal">
       <span class="project-tag">Research · 2022–2023</span>
       <h3 class="project-title">Human Chimeric IL-15 & T-cell Activation</h3>
       <p class="project-desc">
-        Assessed T-cell activation using chimeric IL-15 via in vitro and in vivo models. Involved cell culture, 
+        Assessed T-cell activation using chimeric IL-15 via in vitro and in vivo models. Involved cell culture,
         probe design, gel electrophoresis, and analysis of liquid biopsy reports in cancer research.
       </p>
       <div class="project-pills">
@@ -704,22 +770,6 @@
         <span class="pill">PCR</span>
         <span class="pill">R</span>
         <span class="pill">Liquid Biopsy</span>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="project-card reveal">
-      <span class="project-tag">Internship · 2021</span>
-      <h3 class="project-title">Molecular & Chromatography Lab</h3>
-      <p class="project-desc">
-        Performed DNA extraction, PCR workflows, gel electrophoresis, HPLC and HPTLC experiments. Supported 
-        protocol development for diverse sample types.
-      </p>
-      <div class="project-pills">
-        <span class="pill">HPLC</span>
-        <span class="pill">HPTLC</span>
-        <span class="pill">DNA Extraction</span>
-        <span class="pill">Electrophoresis</span>
       </div>
     </div>
 
@@ -779,14 +829,26 @@
   </div>
 </section>
 
+<!-- CONTACT -->
+<section id="contact" style="background: var(--paper); text-align: center; padding: 100px 48px;">
+  <div style="max-width: 600px; margin: 0 auto;">
+    <p style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 16px;">04</p>
+    <h2 style="font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 20px;">Get in Touch</h2>
+    <p style="font-size: 17px; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 40px;">
+      
+    </a>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-name">Bhavya Sevak</div>
   <ul class="footer-links">
-  
-   <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
+    <li><a href="/cdn-cgi/l/email-protection#3d7f4f4e584b5c560c080d097d5a505c5451135e5250"><span class="__cf_email__" data-cfemail="f7b585849281969cc6c2c7c3b7909a969e9bd994989a">[email&#160;protected]</span></a></li>
+    <li><a href="tel:6692549798">(669) 254-9798</a></li>
+    <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
   </ul>
-  <p class="footer-copy">© Bhavya Sevak</p>
+  <p class="footer-copy">© 2025 Bhavya Sevak</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/clo
+<script data-cfasync="false" src
