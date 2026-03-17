@@ -6,7 +6,7 @@
 <title>Bhavya Sevak — Biomedical Informatics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0a0a0f;
@@ -16,8 +16,8 @@
     --muted: #6b6b78;
     --card-bg: #ffffff;
     --border: rgba(10,10,15,0.1);
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Inter', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -142,10 +142,10 @@
 
   .hero-name {
     font-family: var(--font-display);
-    font-size: clamp(52px, 6vw, 88px);
+    font-size: clamp(48px, 6vw, 84px);
     font-weight: 800;
     line-height: 0.95;
-    letter-spacing: -3px;
+    letter-spacing: -1px;
     margin-bottom: 28px;
   }
 
@@ -286,9 +286,9 @@
 
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(32px, 4vw, 52px);
+    font-size: clamp(28px, 4vw, 48px);
     font-weight: 800;
-    letter-spacing: -2px;
+    letter-spacing: -0.5px;
     line-height: 1;
   }
 
@@ -577,18 +577,37 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
+    nav { padding: 14px 20px; }
     .nav-links { display: none; }
-    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
-    .hero-right { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-start; }
-    .stat-card { width: 160px; padding: 16px 20px; }
-    .stat-number { font-size: 32px; }
-    section { padding: 70px 24px; }
-    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+    #hero { grid-template-columns: 1fr; padding: 90px 20px 50px; gap: 40px; }
+    .hero-name { font-size: clamp(42px, 12vw, 64px); letter-spacing: -0.5px; }
+    .hero-desc { font-size: 15px; }
+    .hero-right { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 12px; }
+    .stat-card { width: 140px; padding: 14px 16px; }
+    .stat-number { font-size: 28px; letter-spacing: -1px; }
+    .stat-label { font-size: 10px; }
+    section { padding: 56px 20px; }
+    .section-title { font-size: clamp(26px, 8vw, 40px); }
+    .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 32px; }
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.featured { grid-column: span 1; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .project-card { padding: 22px; }
+    .project-title { font-size: 17px; }
+    .about-highlight { font-size: clamp(18px, 5vw, 24px); }
+    .hero-cta { flex-direction: column; gap: 10px; }
+    .btn-primary, .btn-secondary, .btn-cv { width: 100%; text-align: center; justify-content: center; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 40px 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .skills-categories { gap: 24px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-name { font-size: clamp(36px, 10vw, 52px); }
+    .stat-card { width: 120px; padding: 12px 14px; }
+    .stat-number { font-size: 24px; }
+    .projects-grid { gap: 14px; }
+    .project-card { padding: 18px; }
+    section { padding: 48px 16px; }
   }
 </style>
 </head>
@@ -616,8 +635,8 @@
       <span class="line2">Sevak</span>
     </h1>
     <p class="hero-desc">
-      Biomedical Informatics graduate student at <strong>Arizona State University</strong>,
-building at the intersection of genomics, clinical data, and machine learning. On a mission to turn complex biological data into tools that <strong>actually change patient outcomes.</strong>
+      Bridging <strong>genomics, metabolomics,</strong> and <strong>machine learning</strong>
+      to decode disease mechanisms — from gallstone pathways to biomarker discovery.
     </p>
     <div class="hero-cta">
       <a href="#research" class="btn-primary">View Research ↓</a>
@@ -698,7 +717,7 @@ building at the intersection of genomics, clinical data, and machine learning. O
 
     <!-- Featured — mGWAS -->
     <div class="project-card featured reveal">
-      <span class="project-tag">Current · ASU 2026</span>
+      <span class="project-tag">Current · ASU 2025</span>
       <h3 class="project-title">Metabolic GWAS on Gallstone Disease</h3>
       <p class="project-desc">
         Investigating genetic–metabolite associations in gallstone disease using metabolomics and genotype data.
@@ -736,7 +755,7 @@ building at the intersection of genomics, clinical data, and machine learning. O
 
     <!-- EHR Sepsis -->
     <div class="project-card reveal">
-      <span class="project-tag">Clinical ML · 2026</span>
+      <span class="project-tag">Clinical ML · 2025</span>
       <h3 class="project-title">EHR Sepsis Readmission Predictor</h3>
       <p class="project-desc">
         MIMIC-IV cohort analysis predicting 30-day sepsis readmission using SQL + Python. Gradient Boosting with SHAP explainability, risk stratification, and health equity analysis across insurance groups.
@@ -773,7 +792,7 @@ building at the intersection of genomics, clinical data, and machine learning. O
 
     <!-- Heart Disease -->
     <div class="project-card reveal">
-      <span class="project-tag">ML Project · 2026</span>
+      <span class="project-tag">ML Project · 2025</span>
       <h3 class="project-title">Heart Disease Prediction</h3>
       <p class="project-desc">
         Clinical ML classifier on the Cleveland dataset with Gradient Boosting, SHAP explainability, and a live predictor where you can input patient values and get instant risk predictions.
@@ -866,9 +885,6 @@ building at the intersection of genomics, clinical data, and machine learning. O
 </section>
 
 
-    </a>
-  </div>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -878,7 +894,7 @@ building at the intersection of genomics, clinical data, and machine learning. O
     <li><a href="https://www.linkedin.com/in/bhavya-sevak-48515b215" target="_blank">LinkedIn →</a></li>
     <li><a href="https://github.com/bsevakstark" target="_blank">GitHub →</a></li>
   </ul>
-  <p class="footer-copy">© Bhavya Sevak</p>
+  <p class="footer-copy">© 2025 Bhavya Sevak</p>
 </footer>
 
 <script data-cfasync="false" src
