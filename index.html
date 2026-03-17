@@ -610,7 +610,78 @@
     section { padding: 48px 16px; }
   }
 </style>
-</head>
+<style>
+  /* ── BACK TO TOP ── */
+  #back-to-top {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    width: 44px; height: 44px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.3s, transform 0.3s;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  #back-to-top.visible { opacity: 1; transform: translateY(0); }
+  #back-to-top:hover { background: #1a1a2e; }
+
+  /* ── MOBILE MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px; left: 0; right: 0;
+    background: rgba(245,242,235,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    z-index: 99;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--muted); }
+  .mobile-menu.open { display: flex; }
+
+  @media (max-width: 900px) {
+    .hamburger { display: flex; }
+  }
+</style>
 <body>
 
 <!-- NAV -->
@@ -622,7 +693,21 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#research" onclick="closeMenu()">Research</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
 <!-- HERO -->
 <section id="hero">
@@ -737,7 +822,7 @@
 
     <!-- RNA-seq Alzheimer's -->
     <div class="project-card reveal">
-      <span class="project-tag">Bioinformatics · 2025</span>
+      <span class="project-tag">Jul 2025 – Sep 2025</span>
       <h3 class="project-title">Alzheimer's RNA-seq Pipeline</h3>
       <p class="project-desc">
         End-to-end differential expression pipeline on AD brain tissue — QC, normalization, DEG analysis, volcano plots, heatmaps, and pathway enrichment identifying neuroinflammation and synaptic loss signatures.
@@ -755,7 +840,7 @@
 
     <!-- EHR Sepsis -->
     <div class="project-card reveal">
-      <span class="project-tag">Clinical ML · 2025</span>
+      <span class="project-tag">Nov 2025 – Jan 2026</span>
       <h3 class="project-title">EHR Sepsis Readmission Predictor</h3>
       <p class="project-desc">
         MIMIC-IV cohort analysis predicting 30-day sepsis readmission using SQL + Python. Gradient Boosting with SHAP explainability, risk stratification, and health equity analysis across insurance groups.
@@ -773,7 +858,7 @@
 
     <!-- Breast Cancer -->
     <div class="project-card reveal">
-      <span class="project-tag">ML Project · 2025</span>
+      <span class="project-tag">Jan 2025 – Feb 2025</span>
       <h3 class="project-title">Breast Cancer Biomarker Classifier</h3>
       <p class="project-desc">
         ML pipeline classifying tumors as malignant or benign using 3 models with SHAP explainability, ROC curves, and a live interactive dashboard.
@@ -792,7 +877,7 @@
 
     <!-- Heart Disease -->
     <div class="project-card reveal">
-      <span class="project-tag">ML Project · 2025</span>
+      <span class="project-tag">Jan 2026 – Feb 2026</span>
       <h3 class="project-title">Heart Disease Prediction</h3>
       <p class="project-desc">
         Clinical ML classifier on the Cleveland dataset with Gradient Boosting, SHAP explainability, and a live predictor where you can input patient values and get instant risk predictions.
@@ -811,7 +896,7 @@
 
     <!-- COVID Dashboard -->
     <div class="project-card reveal">
-      <span class="project-tag">Dashboard · 2025</span>
+      <span class="project-tag">Mar 2026</span>
       <h3 class="project-title">COVID-19 Global Dashboard</h3>
       <p class="project-desc">
         Interactive world map + trend charts dashboard using live Our World in Data. Country comparisons, vaccination rates, case fatality analysis, and GDP vs cases insights across 200+ countries.
@@ -896,6 +981,30 @@
   </ul>
   <p class="footer-copy">© 2025 Bhavya Sevak</p>
 </footer>
+
+<script>
+  // Back to top
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.querySelector('.hamburger');
+    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+</script>
 
 <script data-cfasync="false" src
 
